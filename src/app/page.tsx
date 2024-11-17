@@ -13,6 +13,7 @@ export default function Home() {
           priority
         />
         <h1 className="text-lg bg-slate-400">Hello stage</h1>
+        <h1 className="text-lg bg-slate-400">123123</h1>
       </main>
     </div>
   );
