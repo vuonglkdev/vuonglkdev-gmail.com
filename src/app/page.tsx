@@ -12,7 +12,7 @@ export default function Home() {
           height={38}
           priority
         />
-        <h1 className="text-lg">Hello stage</h1>
+        <h1 className="text-lg bg-slate-400">Hello stage</h1>
       </main>
     </div>
   );
