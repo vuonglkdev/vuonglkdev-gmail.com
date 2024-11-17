@@ -1,0 +1,15 @@
+version: "3"
+services:
+  nextjs-app:
+    build: .
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - /etc/nginx/sites-available/default:/etc/nginx/sites-available/default
+      - /etc/nginx/sites-enabled:/etc/nginx/sites-enabled
+    restart: unless-stopped
