@@ -31,11 +31,12 @@ jobs:
           SSH_ENDPOINT: ${{ vars.EC2_PUBLIC_IP }}
           SSH_KEY: ${{ vars.EC2_PRIVATE_KEY }}
         run: |
-          eval $(ssh-agent -s)
-          bash -c 'ssh-add <(echo "$SSH_KEY")'
-          ssh -o StrictHostKeyChecking=no -t ubuntu@$SSH_ENDPOINT 'echo "zolo"'
-          # cd /app  
-          # git pull origin stage  
-          # yarn install  
-          # yarn build  
-          # pm2 restart all
+            eval $(ssh-agent -s)
+            bash -c 'ssh-add <(echo "$SSH_KEY")
+            ssh -o StrictHostKeyChecking=no -t $SSH_ENDPOINT 'echo "zolo"'
+            # cd /app  
+            # git pull origin stage  
+            # yarn install  
+            # yarn build  
+            # pm2 restart all 
+      
