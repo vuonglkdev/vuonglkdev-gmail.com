@@ -27,37 +27,17 @@ jobs:
       #     yarn build
 
       - name: Deploy to EC2
+     env:
+          SSH_ENDPOINT: ${{ vars.EC2_PUBLIC_IP }}
+          SSH_KEY: ${{ vars.EC2_PRIVATE_KEY }}
         run: |
-          ssh -o StrictHostKeyChecking=no -i -----BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEAwHIL8bBhYW1IeMV+eodAqE5pefu021k6DlibZ0+aUN0TaLs0
-737xmKr2k2WFSYDPGc8a4DmYtKNGuw3qdpONGMP1hgC00vkoAfCxITi9YLPH6N+S
-UcI/Kh3F18TN5Ip8cQ7866vywR98MgZ+0xNz4mO2HHvDHPDpbTgpwyM49FBjMYrt
-dJ4HcFcxORuSzJOvmlJk2WQ9O5CVZNSgi464qlYZVwM5NBkByC5UzCmZJ/HlpNlO
-p2K3sS1hQchfKxJe9+Ix/E0I7uLboORro6YYsdicj5iNkxYC9VNxjkUXIb6QG787
-ufSgF5kMk7avZh1zmtiUDDz72IxqkPva0r4ZYQIDAQABAoIBAQCK6ggbJ1Gz7RnS
-K+VXdwhCNY/HwNzVNTxGHMnYskpXMq4O/IuCkaS9qjMhRLgIzdUw8SGaV5kWU4H8
-BliHzYydIt65Iwtj+vxZIjAKJhX1lvCn9bJ+F/RWZ3VngiWJYjnftoz1ZYJuy1Zw
-GeY0YSdWdNmBCAlYe8JT16W1uVgkaht0kIVz1GhZsNGVMsX9s3jn2lTqF48lNqaX
-bt4g/NLkkyXvQklcFVog655kgSbk9I7fpmJs/hxWp6sNbk1P58fQq7LnruuOZkxi
-U5TPHUD6ICTjUUAAt6QiM2uZjuboJb70Jt1K6fLns3OHlueNOP5hv+XqcLfjHevC
-uO33aUvdAoGBAPzgHs0TPY1S6MiaebAKauvt6lsTRpNDHIHcC1/8P36k1YRCNx8S
-MlyL8oIStLz3A+7IDYtJYMfaktEH+Xf4mHK/9Ow7kIWDiEPqOEayHY1fXDkCLlxI
-4UBxLLZbvbrrTaPUQVWzoEkXDKIYsdqZodMI1JINo2gZ4Bx7dHdSkNnTAoGBAMLS
-xy9fpr/QZfGUB4XXUMdg6OnT5tbSathsqmuIcrBICpfvsI9PabRZGCjwbbb/YTfx
-67/44XSatw/M7BrQ5BCMb1KwinNcn+okmd57hRdaQCzr0+zjoNwoFUZivJtBg8wv
-N4quMnRKdjNdVawb+tCgI1eK4LbkpXXOYA9S1St7AoGBAMGV5Z6DGzzkeraPo5bD
-8uSYpy9/yyiTWPCE/uRFXGpcT+THOCF+MbWtoUI4hcqfo5AZ8FxwGToGNxz06OMS
-GcrG7v4l/1ZmwluTo+9jDcKbfSNbaxhU5rQJr/wOsWm2FyLTLA0qzQsHLTGujAFY
-WY0QFoOVE0JvhKTpUdjDCYbnAoGARL3CckC5wWxyy+6DSQJUCkVzaS3PgXT1JjAR
-Yaffb7u7oSh9j9NhZLUbBTbwP2WUk/zURgQ26MG+XeDcXgnersgeb3rDHzlLY35O
-nGXQ7BB4HGGJgUg/9e5es1sbWVygeGcgndohC09KrYz9MaEduocGcVkbOO0sRIjw
-8/cyKAkCgYAyrEZkS8Ilby0jF68QLDZNCZXOtBb9wKq94dzQ4DdkvV/qmGGt6KKU
-K2bYegFWEdeTMsNHGUh7+w2OIPJ7ZD4d63MFwsgPxG9UBEbh8Wox1LwjFVu/bHZz
-friTOitLteszJh/ob6G/vvUAW0CYsMS821xkLQnq1JamsXYybcTkkQ==
------END RSA PRIVATE KEY----- ubuntu@35.175.194.167 << 'EOF'
+            eval $(ssh-agent -s)
+            bash -c 'ssh-add <(echo "$SSH_KEY")
+            bash -c 'ssh-add <(echo "$SSH_KEY")'
+            ssh -o StrictHostKeyChecking=no -t $SSH_ENDPOINT 'echo "zolo"'
             cd /vuonglkdev-gmail.com  
             git pull origin stage  
             yarn install  
             yarn build  
             pm2 restart all 
-          EOF
+
