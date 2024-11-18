@@ -33,7 +33,7 @@ jobs:
         run: |
           eval $(ssh-agent -s)
           bash -c 'ssh-add <(echo "$SSH_KEY")'
-          ssh -o StrictHostKeyChecking=no -t $SSH_ENDPOINT 'echo "zolo"'
+          ssh -o StrictHostKeyChecking=no -t $SSH_ENDPOINT 'ls -la && pwd && echo $USER'
           cd vuonglkdev-gmail.com/
           git pull origin stage  
           yarn install  
