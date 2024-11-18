@@ -28,6 +28,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no -t $SSH_ENDPOINT << EOF
             echo "Deploying application..."
             cd vuonglkdev-gmail.com || exit 1
+            git config pull.rebase false # Sử dụng merge để hợp nhất
             git pull origin stage || exit 1
             yarn install --frozen-lockfile || exit 1
             yarn build || exit 1
