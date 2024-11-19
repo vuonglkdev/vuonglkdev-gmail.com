@@ -13,6 +13,8 @@ export default function Home() {
           priority
         />
 
+        <h1>Hello, World!</h1>
+
         <p className="text-lg bg-slate-400">
           To generate this message, Docker took the following steps: 1. The
           Docker client contacted the Docker daemon. 2. The Docker daemon pulled
