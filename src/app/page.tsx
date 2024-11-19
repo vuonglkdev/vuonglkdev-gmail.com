@@ -12,8 +12,16 @@ export default function Home() {
           height={38}
           priority
         />
-        <h1 className="text-lg bg-slate-400">Hello stage</h1>
-        <h1 className="text-lg bg-slate-400">123123</h1>
+
+        <pre className="text-lg bg-slate-400">
+          To generate this message, Docker took the following steps: 1. The
+          Docker client contacted the Docker daemon. 2. The Docker daemon pulled
+          the "hello-world" image from the Docker Hub. (amd64) 3. The Docker
+          daemon created a new container from that image which runs the
+          executable that produces the output you are currently reading. 4. The
+          Docker daemon streamed that output to the Docker client, which sent it
+          to your terminal.
+        </pre>
       </main>
     </div>
   );
