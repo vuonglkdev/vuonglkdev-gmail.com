@@ -13,7 +13,7 @@ export default function Home() {
           priority
         />
 
-        <pre className="text-lg bg-slate-400">
+        <p className="text-lg bg-slate-400">
           To generate this message, Docker took the following steps: 1. The
           Docker client contacted the Docker daemon. 2. The Docker daemon pulled
           the &quot;hello-world&quot; image from the Docker Hub. (amd64) 3. The
@@ -21,7 +21,7 @@ export default function Home() {
           executable that produces the output you are currently reading. 4. The
           Docker daemon streamed that output to the Docker client, which sent it
           to your terminal.
-        </pre>
+        </p>
       </main>
     </div>
   );
